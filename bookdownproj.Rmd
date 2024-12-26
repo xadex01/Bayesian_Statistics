@@ -1,0 +1,1182 @@
+--- 
+title: "Introduction to Bayesian Statistics"
+author: "AbdulHafiz Abba"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+---
+
+# Introduction to Statistical Frameworks
+
+Statistics is the field of study that deals with the collection, analysis, interpretation, presentation, and organization of data. In order to make inferences from data, different schools of thought exist, each with their own approach to statistical analysis. Three of the most prominent approaches to statistical inference are:
+
+- Classical Statistics  
+- Frequentist Statistics  
+- Bayesian Statistics  
+
+## Introduction
+
+Statistics provides tools for analyzing data and making inferences about the underlying processes that generate the data. Over time, three primary frameworks for statistical inference have emerged: the **Classical**, **Frequentist**, and **Bayesian** frameworks. This chapter introduces these frameworks, highlighting their principles, methodologies, and applications.
+
+## Classical Framework
+
+The **Classical framework** is the foundation of statistical inference, emphasizing objectivity and reliance on observed data. It focuses on deriving conclusions about fixed but unknown parameters of a population based on sample data.
+
+### Key Principles of the Classical Framework
+
+- **Parameters as Fixed Quantities**: Parameters such as the mean and variance are treated as fixed but unknown.  
+- **Probability as Long-Run Frequency**: Probability is interpreted as the frequency of events in repeated experiments.  
+- **Data-Driven Inference**: Relies solely on the observed data without incorporating prior knowledge.  
+
+### Tools of the Classical Framework
+
+- **Hypothesis Testing**: Evaluating whether the data supports or contradicts a specific claim about a parameter.  
+- **Confidence Intervals**: Providing a range of plausible values for a parameter based on sample data.  
+- **p-Values**: Quantifying the evidence against a null hypothesis.  
+
+### Example: Testing a Coin's Fairness
+
+Suppose we want to test if a coin is fair (\(p = 0.5\)):
+
+- Flip the coin 100 times and count the heads.  
+- Use a hypothesis test to evaluate whether the observed proportion of heads significantly deviates from 0.5.  
+
+## Frequentist Framework
+
+The **Frequentist framework** builds on classical ideas, focusing on repeated sampling and long-run frequencies. It is often associated with methods such as hypothesis testing, confidence intervals, and maximum likelihood estimation.
+
+### Key Principles of the Frequentist Framework
+
+- **Parameters are Fixed**: The population parameters are constant but unknown values.  
+- **Inference from Sampling Distributions**: Conclusions are drawn based on the properties of sample statistics under repeated sampling.  
+- **No Use of Prior Information**: Inference relies solely on the data from the current study.  
+
+### Frequentist Tools
+
+- **Maximum Likelihood Estimation (MLE)**: Estimates parameters by maximizing the likelihood function.  
+- **Hypothesis Testing**: Uses tests like the t-test and chi-square test to make decisions about parameters.  
+- **Confidence Intervals**: Constructed based on sample statistics to estimate parameters with a specified level of confidence.  
+
+### Example: Estimating the Mean
+
+A sample of 50 heights is taken from a population. The frequentist approach calculates:
+
+- The sample mean as the best estimate of the population mean.  
+- A confidence interval to describe the uncertainty around this estimate.  
+
+## Bayesian Framework
+
+The **Bayesian framework** interprets probability as a degree of belief and updates this belief based on observed data using **Bayes' Theorem**.
+
+### Key Principles of the Bayesian Framework
+
+- **Parameters as Random Variables**: Parameters are treated as random variables with their own probability distributions.  
+- **Incorporation of Prior Knowledge**: Combines prior beliefs about parameters with observed data to produce a posterior distribution.  
+- **Direct Probability Statements**: Allows probabilistic conclusions about parameters (e.g., "The probability that the parameter lies between 1 and 2 is 95%").  
+
+### Bayes' Theorem
+
+Bayes' Theorem is the cornerstone of Bayesian inference:  
+
+\[ P(\theta | D) = \frac{P(D | \theta) P(\theta)}{P(D)} \]  
+
+where:  
+
+- \(P(\theta | D)\): Posterior probability (updated belief after observing data).  
+- \(P(D | \theta)\): Likelihood (probability of data given the parameter).  
+- \(P(\theta)\): Prior probability (initial belief about the parameter).  
+- \(P(D)\): Marginal probability of the data (normalizing constant).  
+
+### Example: Estimating the Probability of Rain
+
+Suppose we believe the probability of rain tomorrow is 30% (prior). After seeing a weather forecast, the likelihood of rain increases based on observed conditions. Using Bayes' Theorem, we update our belief to find the posterior probability.  
+
+## Comparison of Frameworks
+
+The following table compares the three frameworks:
+
+| **Aspect**                | **Classical**           | **Frequentist**        | **Bayesian**              |
+|---------------------------|-------------------------|-------------------------|---------------------------|
+| Parameters                | Fixed but unknown       | Fixed but unknown       | Treated as random variables |
+| Use of Prior Knowledge    | None                    | None                    | Explicitly included       |
+| Probability Interpretation| Long-run frequency      | Long-run frequency      | Degree of belief          |
+| Inference                 | Hypothesis tests, p-values | Confidence intervals, MLE | Posterior distributions   |
+
+*Table: Comparison of Classical, Frequentist, and Bayesian Frameworks*
+
+# Conditional Probability and Bayes' Theorem
+
+## Conditional Probability
+Conditional probability is the probability of an event occurring given that another event has already occurred. It is denoted as \(P(A|B)\), which represents the probability of event \(A\) occurring given that event \(B\) has occurred.
+
+The formula for conditional probability is:
+\[ P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad \text{where } P(B) > 0 \]
+Here:
+- \(P(A \cap B)\): The joint probability of both \(A\) and \(B\) occurring.
+- \(P(B)\): The probability of event \(B\).
+
+## Bayes' Theorem
+Bayes' Theorem is a fundamental result in probability theory that relates the conditional probabilities of two events. It provides a way to update our beliefs about a hypothesis (\(H\)) based on new evidence (\(E\)).
+
+The formula for Bayes' Theorem is:
+\[ P(H|E) = \frac{P(E|H)P(H)}{P(E)} \]
+Here:
+- \(P(H|E)\): The posterior probability of the hypothesis \(H\) given the evidence \(E\).
+- \(P(E|H)\): The likelihood, or the probability of observing the evidence given the hypothesis.
+- \(P(H)\): The prior probability of the hypothesis \(H\).
+- \(P(E)\): The marginal probability of the evidence, calculated as:
+  \[ P(E) = \sum_{i} P(E|H_i)P(H_i) \]
+  where \(H_i\) represents all possible hypotheses.
+
+## Worked Example 1: Disease Diagnosis
+Suppose a diagnostic test is used to detect a rare disease that affects 1 in 1,000 people (\(P(D) = 0.001\)). The test has:
+- Sensitivity (true positive rate): 99% (\(P(T|D) = 0.99\)).
+- Specificity (true negative rate): 95% (\(P(T^c|D^c) = 0.95\)).
+
+We want to find the probability that a person actually has the disease given that they tested positive, \(P(D|T)\).
+
+### Solution
+Using Bayes' Theorem:
+\[ P(D|T) = \frac{P(T|D)P(D)}{P(T)} \]
+
+First, calculate \(P(T)\), the total probability of a positive test:
+\[ P(T) = P(T|D)P(D) + P(T|D^c)P(D^c) \]
+Here:
+- \(P(D^c) = 1 - P(D) = 0.999\)
+- \(P(T|D^c) = 1 - P(T^c|D^c) = 0.05\)
+
+Substitute the values:
+\[ P(T) = (0.99)(0.001) + (0.05)(0.999) = 0.00099 + 0.04995 = 0.05094 \]
+
+Now calculate \(P(D|T)\):
+\[ P(D|T) = \frac{(0.99)(0.001)}{0.05094} = \frac{0.00099}{0.05094} \approx 0.0194 \]
+
+Thus, the probability that a person has the disease given a positive test result is approximately 1.94%.
+
+## Worked Example 2: Spam Email Classification
+Suppose an email filter uses Bayes' Theorem to classify emails as spam or not spam. Historical data shows:
+- \(P(S)\): The probability an email is spam is 20%.
+- \(P(W|S)\): The probability of the word "win" appearing in a spam email is 80%.
+- \(P(W|S^c)\): The probability of the word "win" appearing in a non-spam email is 5%.
+
+We want to find the probability that an email is spam given that it contains the word "win," \(P(S|W)\).
+
+### Solution
+Using Bayes' Theorem:
+\[ P(S|W) = \frac{P(W|S)P(S)}{P(W)} \]
+
+First, calculate \(P(W)\), the total probability of the word "win":
+\[ P(W) = P(W|S)P(S) + P(W|S^c)P(S^c) \]
+Here:
+- \(P(S^c) = 1 - P(S) = 0.8\)
+
+Substitute the values:
+\[ P(W) = (0.8)(0.2) + (0.05)(0.8) = 0.16 + 0.04 = 0.2 \]
+
+Now calculate \(P(S|W)\):
+\[ P(S|W) = \frac{(0.8)(0.2)}{0.2} = \frac{0.16}{0.2} = 0.8 \]
+
+Thus, the probability that an email is spam given that it contains the word "win" is 80%.
+
+## Summary
+Conditional probability provides the foundation for reasoning under uncertainty, while Bayes' Theorem enables us to update probabilities as new evidence becomes available. These concepts are widely used in fields such as medicine, machine learning, and spam filtering, offering powerful tools for decision-making and inference.
+
+# Common Probability Distributions
+
+## Bernoulli Distribution
+The Bernoulli distribution models the outcome of a single trial with two possible outcomes: success (1) and failure (0). It is commonly used in binary experiments.
+
+### Probability Mass Function (PMF)
+The PMF of a Bernoulli random variable $X$ is:
+$$
+P(X = x) = \begin{cases} 
+p, & \text{if } x = 1, \\
+1 - p, & \text{if } x = 0, \\ \end{cases}
+$$
+where $p$ is the probability of success ($0 \leq p \leq 1$).
+
+### Mean and Variance
+$$
+\text{Mean: } \mathbb{E}[X] = p, \quad \text{Variance: } \text{Var}(X) = p(1-p).
+$$
+
+### Cumulative Distribution Function (CDF)
+The CDF is given by:
+$$
+F(x) = \begin{cases} 
+0, & \text{if } x < 0, \\
+1-p, & \text{if } 0 \leq x < 1, \\
+1, & \text{if } x \geq 1. \end{cases}
+$$
+
+### Worked Example 1: Biased Coin Toss
+A biased coin shows heads ($X = 1$) with probability $p = 0.6$. Compute the mean, variance, and the probability of heads:
+- **Mean:** $\mathbb{E}[X] = p = 0.6$.
+- **Variance:** $\text{Var}(X) = p(1-p) = 0.6(1-0.6) = 0.24$.
+- **Probability of heads:** $P(X = 1) = p = 0.6$.
+
+### Worked Example 2: Quality Control
+In a factory, $p = 0.95$ represents the probability that a product is non-defective. Compute:
+- $P(X = 1)$: The probability of a non-defective product is $0.95$.
+- CDF at $x = 0.5$: $F(0.5) = 1-p = 0.05$.
+
+## Uniform Distribution
+The uniform distribution assumes all outcomes in a given range are equally likely.
+
+### Probability Density Function (PDF)
+For a continuous uniform random variable $X$ over $[a, b]$, the PDF is:
+$$
+f(x) = \begin{cases} 
+\frac{1}{b-a}, & \text{if } a \leq x \leq b, \\
+0, & \text{otherwise}. \end{cases}
+$$
+
+### Mean and Variance
+$$
+\text{Mean: } \mathbb{E}[X] = \frac{a+b}{2}, \quad \text{Variance: } \text{Var}(X) = \frac{(b-a)^2}{12}.
+$$
+
+### Cumulative Distribution Function (CDF)
+$$
+F(x) = \begin{cases} 
+0, & \text{if } x < a, \\
+\frac{x-a}{b-a}, & \text{if } a \leq x \leq b, \\
+1, & \text{if } x > b. \end{cases}
+$$
+
+### Worked Example 1: Random Number Generator
+Suppose $X \sim U(0, 1)$. Compute:
+- **Mean:** $\mathbb{E}[X] = \frac{0+1}{2} = 0.5$.
+- **Variance:** $\text{Var}(X) = \frac{(1-0)^2}{12} = 0.0833$.
+- **Probability $P(0.2 \leq X \leq 0.5)$:**
+  $$
+  P(0.2 \leq X \leq 0.5) = \int_{0.2}^{0.5} f(x) \, dx = \int_{0.2}^{0.5} 1 \, dx = 0.3.
+  $$
+
+### Worked Example 2: Waiting Time
+Suppose $X \sim U(0, 20)$. Compute:
+- **Mean:** $\mathbb{E}[X] = \frac{0+20}{2} = 10$.
+- **Variance:** $\text{Var}(X) = \frac{(20-0)^2}{12} = 33.33$.
+- **$P(X \leq 5)$:**
+  $$
+  F(5) = \frac{5-0}{20-0} = 0.25.
+  $$
+
+## Exponential Distribution
+The exponential distribution models the time between events in a Poisson process.
+
+### Understanding Exponential Distribution 
+
+The exponential distribution is a way to explain **how long you wait for something random to happen**, like the time between events.
+
+## Example: Waiting for a Bus
+Imagine you're at a bus stop, and buses come at random times. The exponential distribution helps answer questions like:
+
+- "How long will I wait for the next bus?"
+- "What’s the chance it will arrive in the next 5 minutes?"
+
+### Key Ideas:
+1. **Random Events**: 
+   - It’s for things that happen randomly, like waiting for a bus, how long a battery lasts, or time between phone calls.
+
+2. **Fair Start** (Memoryless Property): 
+   - The time you’ve already waited doesn’t affect how much longer you’ll wait.  
+   Example: If you’ve waited 10 minutes, the chance of the bus arriving in the next minute is the same as when you first arrived.
+
+3. **Most Things Happen Quickly**: 
+   - The chance of something happening (like the bus arriving) is higher at the start and decreases the longer you wait.
+
+### Simple Shape:
+- Think of the waiting time as a hill:
+  - **Starts high** (most events happen quickly).  
+  - **Slopes down** (few events take a long time).
+
+### Why It's Useful:
+If you know the **average waiting time**, you can use the exponential distribution to predict:
+
+- How likely something is to happen soon.
+- How likely it is to take longer.
+
+
+
+### Probability Density Function (PDF)
+$$
+f(x; \lambda) = \begin{cases} 
+\lambda e^{-\lambda x}, & \text{if } x \geq 0, \\
+0, & \text{otherwise}. \end{cases}
+$$
+
+### Mean and Variance
+$$
+\text{Mean: } \mathbb{E}[X] = \frac{1}{\lambda}, \quad \text{Variance: } \text{Var}(X) = \frac{1}{\lambda^2}.
+$$
+
+### Cumulative Distribution Function (CDF)
+$$
+F(x; \lambda) = \begin{cases} 
+1 - e^{-\lambda x}, & \text{if } x \geq 0, \\
+0, & \text{otherwise}. \end{cases}
+$$
+
+### Worked Example 1: Time Between Phone Calls
+Suppose $\lambda = 3$ calls/hour. Compute:
+
+- **Mean:** $\mathbb{E}[X] = \frac{1}{3} = 0.333$ hours.
+- **Variance:** $\text{Var}(X) = \frac{1}{9} = 0.111$.
+- **$P(X \leq 0.1)$:**
+  $$
+  F(0.1) = 1 - e^{-3 \cdot 0.1} = 1 - e^{-0.3} \approx 0.259.
+  $$
+
+### Worked Example 2: Machine Failure Time
+Suppose $\lambda = 0.1$ failures/hour. Compute:
+
+- **Mean:** $\mathbb{E}[X] = 10$ hours.
+- **Variance:** $\text{Var}(X) = 100$.
+- **$P(X \geq 20)$:**
+  $$
+  P(X \geq 20) = 1 - F(20) = e^{-0.1 \cdot 20} = e^{-2} \approx 0.135.
+  $$
+### Worked Example: Exponential Distribution
+
+Suppose you are at a bus stop, and buses arrive, on average, every **10 minutes**. You want to calculate:
+
+1. The probability of waiting less than 5 minutes for the bus.
+2. The probability of waiting more than 15 minutes.
+3. The time \( t \) such that there’s a 90% chance the bus arrives by then.
+4. Simulate 10 random waiting times for the bus.
+
+### Step 1: Key Information
+
+- **Mean waiting time (\( \mu \))**: 10 minutes.  
+- **Rate (\( \lambda \))**:  
+  \[
+  \lambda = \frac{1}{\mu} = \frac{1}{10} = 0.1
+  \]  
+
+The exponential distribution is defined as:  
+\[
+f(t) = \lambda e^{-\lambda t}
+\]  
+
+### Step 2: R Code for Calculations
+
+```{r}
+# Parameters
+lambda <- 0.1  # Rate (1/mean)
+
+# 1. Probability of waiting less than 5 minutes
+t <- 5  # Time in minutes
+pexp_value_5 <- pexp(t, rate = lambda)  # Cumulative probability P(T <= 5)
+print(paste("Probability of waiting less than 5 minutes:", round(pexp_value_5, 4)))
+
+# 2. Probability of waiting more than 15 minutes
+t <- 15  # Time in minutes
+pexp_value_15 <- 1 - pexp(t, rate = lambda)  # Complement of cumulative probability
+print(paste("Probability of waiting more than 15 minutes:", round(pexp_value_15, 4)))
+
+# 3. Time such that there’s a 90% chance the bus arrives by then
+p <- 0.9  # Cumulative probability
+qexp_value <- qexp(p, rate = lambda)  # Quantile for P(T <= t) = 0.9
+print(paste("Time for 90% probability:", round(qexp_value, 2), "minutes"))
+
+# 4. Simulate 10 random waiting times
+n <- 10  # Number of simulations
+random_values <- rexp(n, rate = lambda)  # Simulated waiting times
+print("Simulated waiting times:")
+print(random_values)
+```
+
+## Normal Distribution
+The normal distribution describes data clustering around a mean.
+
+### Probability Density Function (PDF)
+$$
+f(x; \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}},
+$$
+where $\mu$ is the mean and $\sigma^2$ the variance.
+
+### Mean and Variance
+$$
+\text{Mean: } \mathbb{E}[X] = \mu, \quad \text{Variance: } \text{Var}(X) = \sigma^2.
+$$
+
+### Cumulative Distribution Function (CDF)
+The CDF is computed as:
+$$
+F(x) = \int_{-\infty}^x f(t; \mu, \sigma^2) \, dt.
+$$
+
+### Worked Example 1: Exam Scores
+Suppose $X \sim N(70, 10^2)$. Compute:
+- **$P(60 \leq X \leq 80)$:**
+  $$
+  P(-1 \leq Z \leq 1) = 0.6827.
+  $$
+### Worked Example 2: Heights of Individuals
+
+Suppose \(X \sim N(170, 64)\). Compute:
+
+- \(P(X \geq 180)\):
+
+$$
+P(Z \geq 1.25) = 1 - P(Z < 1.25) = 1 - 0.8944 = 0.1056.
+$$
+
+# The Beta Distribution
+
+## Definition
+
+The beta distribution is a continuous probability distribution defined on the interval \([0, 1]\). Its probability density function (PDF) is:
+
+$$
+f(p; \alpha, \beta) = \frac{p^{\alpha-1} (1-p)^{\beta-1}}{B(\alpha, \beta)}, \quad 0 \leq p \leq 1,
+$$
+
+where \(\alpha > 0\) and \(\beta > 0\) are shape parameters, and \(B(\alpha, \beta)\) is the beta function.
+
+## Properties
+
+- **Mean**:
+
+$$
+\mathbb{E}[p] = \frac{\alpha}{\alpha + \beta}.
+$$
+
+- **Variance**:
+
+$$
+\text{Var}(p) = \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}.
+$$
+
+## Shape of the Distribution
+
+The beta distribution can take on various shapes depending on \(\alpha\) and \(\beta\):
+
+- Symmetric when \(\alpha = \beta\).
+- Skewed to the right when \(\alpha < \beta\).
+- Skewed to the left when \(\alpha > \beta\).
+
+```{r, echo=FALSE, out.width='70%'}
+knitr::include_graphics("Beta.png")
+```
+
+*Shapes of Beta Distributions.*
+
+```{r, echo=FALSE, out.width='70%'}
+knitr::include_graphics("Gamma.png")
+```
+
+*Shapes of Gamma Distributions.*
+
+## Worked Example
+
+For \(\alpha = 3\) and \(\beta = 2\), the PDF is:
+
+$$
+f(p; 3, 2) = \frac{p^{3-1} (1-p)^{2-1}}{B(3, 2)} = 6 p^2 (1-p).
+$$
+
+The mean is:
+
+$$
+\mathbb{E}[p] = \frac{\alpha}{\alpha + \beta} = \frac{3}{3+2} = 0.6.
+$$
+
+# Bayesian Inference
+
+Bayesian inference is a method of statistical inference in which Bayes' theorem is used to update the probability of a hypothesis as more evidence becomes available. Unlike frequentist methods, Bayesian inference incorporates prior beliefs about a hypothesis and combines them with observed data to form a posterior probability.
+
+## Bayes' Theorem
+
+Bayes' theorem is the foundation of Bayesian inference. It is given by:
+
+$$
+P(H|D) = \frac{P(D|H) P(H)}{P(D)},
+$$
+
+where:
+
+- \(P(H|D)\): Posterior probability (probability of hypothesis \(H\) given data \(D\)).
+- \(P(D|H)\): Likelihood (probability of data \(D\) given hypothesis \(H\)).
+- \(P(H)\): Prior probability (initial belief about hypothesis \(H\)).
+- \(P(D)\): Marginal likelihood (normalizing constant).
+
+## Worked Example: Determining if a Coin is Loaded
+
+### Problem Statement
+
+You have a coin that might be fair or loaded:
+
+- If the coin is **fair**, the probability of heads (H) is \(P(H) = 0.5\).
+- If the coin is **loaded**, the probability of heads (H) is \(P(H) = 0.8\).
+
+Before flipping the coin, you assign a **prior probability** that the coin is loaded:
+
+$$
+P(\text{Loaded}) = 0.6 \quad \text{and} \quad P(\text{Fair}) = 0.4.
+$$
+
+After observing one flip (a head), we update our belief about whether the coin is loaded using Bayes' theorem.
+
+### Step-by-step Solution
+
+1. **Define Prior Probabilities:**
+
+- \(P(\text{Loaded}) = 0.6\)
+- \(P(\text{Fair}) = 0.4\)
+
+2. **Define Likelihoods:**
+
+- If the coin is **loaded**, \(P(H|\text{Loaded}) = 0.8\).
+- If the coin is **fair**, \(P(H|\text{Fair}) = 0.5\).
+
+3. **Compute Marginal Probability of Observing a Head:**
+
+$$
+P(H) = P(H|\text{Loaded})P(\text{Loaded}) + P(H|\text{Fair})P(\text{Fair}).
+$$
+
+Substituting values:
+
+$$
+P(H) = (0.8)(0.6) + (0.5)(0.4) = 0.48 + 0.2 = 0.68.
+$$
+
+4. **Apply Bayes' Theorem:**
+
+Compute the posterior probability that the coin is loaded:
+
+$$
+P(\text{Loaded}|H) = \frac{P(H|\text{Loaded})P(\text{Loaded})}{P(H)}.
+$$
+
+Substituting values:
+
+$$
+P(\text{Loaded}|H) = \frac{(0.8)(0.6)}{0.68} = \frac{0.48}{0.68} \approx 0.7059.
+$$
+
+Similarly, compute the posterior probability that the coin is fair:
+
+$$
+P(\text{Fair}|H) = \frac{P(H|\text{Fair})P(\text{Fair})}{P(H)}.
+$$
+
+Substituting values:
+
+
+$$
+P(\text{Fair} \mid H) = \frac{(0.5)(0.4)}{0.68} = \frac{0.2}{0.68} \approx 0.2941.
+$$
+
+### Conclusion
+
+After observing one head:
+
+- \(P(\text{Loaded}|H) \approx 70.59\%\)
+- \(P(\text{Fair}|H) \approx 29.41\%\)
+
+## Worked Example
+
+Suppose you are estimating the probability of a coin landing heads:
+
+- **Prior:** \( p \sim \text{Beta}(2, 2) \).
+- **Observed data:** 8 heads in 10 flips.
+
+The posterior parameters are:
+
+\[
+\alpha' = \alpha + k = 2 + 8 = 10, \quad \beta' = \beta + (n - k) = 2 + (10 - 8) = 4.
+\]
+
+The posterior distribution is:
+
+\[
+p \mid \text{data} \sim \text{Beta}(10, 4).
+\]
+
+This posterior reflects updated beliefs about \( p \), incorporating the observed data.
+
+---
+
+# The Beta Prior Distribution
+
+## Concept
+
+The beta distribution is often used as a prior distribution for probabilities in Bayesian inference because:
+
+- It is defined on \([0, 1]\), making it ideal for modeling probabilities.
+- It is conjugate to the binomial and Bernoulli likelihoods, simplifying Bayesian updating.
+
+If the prior distribution of \( p \) is:
+
+\[
+p \sim \text{Beta}(\alpha, \beta),
+\]
+
+and the observed data follow a binomial likelihood with \( k \) successes in \( n \) trials, the posterior distribution of \( p \) is:
+
+\[
+p \mid k, n \sim \text{Beta}(\alpha + k, \beta + n - k).
+\]
+
+## Worked Example: Bayesian Updating
+
+Suppose:
+
+- **Prior:** \( p \sim \text{Beta}(1, 1) \) (uniform prior).
+- **Data:** 6 successes in 10 trials.
+
+The posterior parameters are:
+
+\[
+\alpha' = \alpha + k = 1 + 6 = 7, \quad \beta' = \beta + (n - k) = 1 + (10 - 6) = 5.
+\]
+
+Thus, the posterior distribution is:
+
+\[
+p \mid \text{data} \sim \text{Beta}(7, 5).
+\]
+
+The posterior mean is:
+
+\[
+\mathbb{E}[p \mid \text{data}] = \frac{\alpha'}{\alpha' + \beta'} = \frac{7}{7+5} = 0.583.
+\]
+
+This updated mean reflects our new belief about \( p \) after observing the data.
+
+---
+
+# Posterior Interval
+
+In Bayesian statistics, a **posterior interval** (or credible interval) is the Bayesian equivalent of a confidence interval in frequentist statistics. It provides a range within which a parameter value is likely to fall, given the observed data and prior information. Unlike frequentist confidence intervals, posterior intervals directly represent probabilities.
+
+## Definition
+
+Given a posterior distribution \( P(\theta|D) \), where \( \theta \) is the parameter of interest and \( D \) is the observed data, a **credible interval** \([a, b]\) satisfies:
+
+\[
+P(a \leq \theta \leq b | D) = 1 - \alpha,
+\]
+
+where \( 1 - \alpha \) is the desired level of credibility (e.g., \( 0.95 \) for a \( 95\% \) credible interval).
+
+## Interpretation
+
+A \( 95\% \) credible interval means there is a \( 95\% \) probability that the true parameter value lies within the interval, given the data and the prior.
+
+## Worked Example: Posterior Interval for a Coin Toss
+
+### Problem Statement
+Suppose we have a coin, and we want to estimate the probability of heads (\( \theta \)). The coin is flipped \( n = 10 \) times, and heads appear \( k = 6 \) times. We assume a Beta prior distribution:
+
+\[
+\theta \sim \text{Beta}(\alpha, \beta) \quad \text{with } \alpha = 2, \beta = 2.
+\]
+
+The likelihood of observing \( k \) heads in \( n \) flips is a Binomial distribution:
+
+\[
+P(k | \theta) = \binom{n}{k} \theta^k (1 - \theta)^{n-k}.
+\]
+
+The posterior distribution is also a Beta distribution:
+
+\[
+\theta | D \sim \text{Beta}(\alpha + k, \beta + n - k).
+\]
+
+Substituting values:
+
+\[
+\theta | D \sim \text{Beta}(2 + 6, 2 + 4) = \text{Beta}(8, 6).
+\]
+
+### Step 1: Compute the Posterior Interval
+We want a \( 95\% \) posterior interval for \( \theta \). This requires finding \( a \) and \( b \) such that:
+
+\[
+P(a \leq \theta \leq b | D) = 0.95.
+\]
+
+For a Beta distribution, credible intervals can be computed using quantiles of the posterior distribution. The \( 2.5\% \) and \( 97.5\% \) quantiles of \( \text{Beta}(8, 6) \) serve as the endpoints of the interval.
+
+### Step 2: Quantile Calculation (Using R or Python)
+In R, we can compute the quantiles using the `qbeta` function:
+
+```{r}
+qbeta(c(0.025, 0.975), shape1 = 8, shape2 = 6)
+```
+
+
+The result is approximately:
+
+\[
+[0.345, 0.827].
+\]
+
+### Conclusion
+The \( 95\% \) credible interval for \( \theta \) is \([0.345, 0.827]\). This means there is a \( 95\% \) probability that the true value of \( \theta \) lies within this interval, given the observed data and prior.
+
+---
+
+Continue adding sections as needed with similar formatting for examples and equations.
+
+
+# Exercise Description
+
+Suppose we are giving two students a multiple-choice exam with 40 questions, where each question has four choices. We don't know how much the students have studied for this exam, but we think that they will do better than just guessing randomly. 
+
+1. What are the parameters of interest?
+2. What is our likelihood?
+3. What prior should we use?
+4. What is the prior probability $P(\theta > 0.25)$? $P(\theta > 0.5)$? $P(\theta > 0.8)$?
+5. Suppose the first student gets 33 questions right. What is the posterior distribution for $\theta_1$? $P(\theta_1 > 0.25)$? $P(\theta_1 > 0.5)$? $P(\theta_1 > 0.8)$? What is a 95% posterior credible interval for $\theta_1$?
+6. Suppose the second student gets 24 questions right. What is the posterior distribution for $\theta_2$? $P(\theta_2 > 0.25)$? $P(\theta_2 > 0.5)$? $P(\theta_2 > 0.8)$? What is a 95% posterior credible interval for $\theta_2$?
+7. What is the posterior probability that $\theta_1 > \theta_2$, i.e., that the first student has a better chance of getting a question right than the second student?
+
+# Solutions
+
+## 1. Parameters of Interest
+
+The parameter of interest is $\theta$, the probability that a student answers a question correctly.
+
+## 2. Likelihood
+
+The likelihood is based on the Binomial distribution:
+
+$$
+P(X | \theta, n) = \binom{n}{X} \theta^X (1 - \theta)^{n - X},
+$$
+
+where $X$ is the number of correct answers, $n$ is the total number of questions, and $\theta$ is the probability of answering a question correctly.
+
+## 3. Prior
+
+We use a Beta prior for $\theta$, $\text{Beta}(\alpha, \beta)$, since it is the conjugate prior for the Binomial distribution. For this example, we use a uniform prior: $\text{Beta}(1, 1)$.
+
+### 2. Types of Priors
+- **Uninformative Prior:**  
+  - Use this when you have no strong prior beliefs.  
+  - Example: \( \text{Beta}(1, 1) \) (uniform prior) assumes all values of \( \theta \) between 0 and 1 are equally likely.  
+  - Suitable when you're starting with minimal assumptions.
+
+- **Informative Prior:**  
+  - Use this when you have prior knowledge or strong assumptions about student performance.  
+  - Example: If you know most students do better than guessing but rarely score perfectly, a \( \text{Beta}(a, b) \) with \( a > b \) (e.g., \( \text{Beta}(2, 1) \)) puts more weight on higher probabilities.
+
+- **Weakly Informative Prior:**  
+  - Use this when you have mild beliefs but don't want the prior to dominate the data.  
+  - Example: A \( \text{Beta}(2, 2) \) prior is symmetric but places less weight on extreme values (near 0 or 1).
+
+
+### The conjugate prior is a beta prior. Plot the density with dbeta.
+
+```{r}
+theta=seq(from=0,to=1,by=.01)
+plot(theta,dbeta(theta,1,1),type="l")
+plot(theta,dbeta(theta,4,2),type="l")
+plot(theta,dbeta(theta,8,4),type="l")
+
+```
+
+## 4. Prior Probabilities
+
+The prior probability calculations are as follows:
+
+- $P(\theta > 0.25)$:
+- $P(\theta > 0.5)$:
+- $P(\theta > 0.8)$:
+
+```{r}
+# Calculate prior probabilities
+pbeta(0.25, 1, 1, lower.tail = FALSE) # P(theta > 0.25)
+pbeta(0.5, 1, 1, lower.tail = FALSE)  # P(theta > 0.5)
+pbeta(0.8, 1, 1, lower.tail = FALSE)  # P(theta > 0.8)
+
+pbeta(0.25, 8, 4, lower.tail = FALSE) # P(theta > 0.25)
+pbeta(0.5, 8, 4, lower.tail = FALSE)  # P(theta > 0.5)
+pbeta(0.8, 8, 4, lower.tail = FALSE)  # P(theta > 0.8)
+``` 
+### Probabilities and Their Meanings
+
+1. **\( P(\theta > 0.25) = 0.9988117 \):**  
+   There is a 99.88% chance that the student’s ability \( \theta \) is greater than 0.25.  
+   - This means we are almost certain that the student is performing better than random guessing (answering correctly more than 25% of the time).
+
+2. **\( P(\theta > 0.5) = 0.8867188 \):**  
+   There is an 88.67% chance that the student’s ability \( \theta \) is greater than 0.5.  
+   - This suggests the student is very likely to be answering more than half of the questions correctly.
+
+3. **\( P(\theta > 0.8) = 0.1611392 \):**  
+   There is only a 16.11% chance that the student’s ability \( \theta \) is greater than 0.8.  
+   - This means it is unlikely that the student is consistently answering 80% or more of the questions correctly, suggesting that their performance is good but not near perfection.
+
+### Summary
+Based on these probabilities:
+- It’s almost certain that the student is doing better than just guessing.  
+- They are very likely to answer more than half the questions correctly.  
+- It is less likely that they are performing exceptionally well, such as scoring 80% or higher.  
+
+```{r}
+# Posterior parameters
+alpha1 <- 1 + 33
+beta1 <- 1 + 40 - 33
+
+# Posterior probabilities
+pbeta(0.25, alpha1, beta1, lower.tail = FALSE)
+pbeta(0.5, alpha1, beta1, lower.tail = FALSE)
+pbeta(0.8, alpha1, beta1, lower.tail = FALSE)
+
+# plot posterior first to get the right scale on the y-axis
+plot(theta,dbeta(theta,41,11),type="l")
+lines(theta,dbeta(theta,8,4),lty=2)
+# plot likelihood
+lines(theta,dbinom(33,size=40,p=theta),lty=3)
+# plot scaled likelihood
+lines(theta,44*dbinom(33,size=40,p=theta),lty=3)
+
+# Credible interval
+qbeta(c(0.025, 0.975), alpha1, beta1)
+
+# Posterior parameters
+alpha2 <- 1 + 24
+beta2 <- 1 + 40 - 24
+
+# Posterior probabilities
+pbeta(0.25, alpha2, beta2, lower.tail = FALSE)
+pbeta(0.5, alpha2, beta2, lower.tail = FALSE)
+pbeta(0.8, alpha2, beta2, lower.tail = FALSE)
+
+# Credible interval
+qbeta(c(0.025, 0.975), alpha2, beta2)
+
+# Simulate posterior distributions
+set.seed(123)
+posterior1 <- rbeta(10000, alpha1, beta1)
+posterior2 <- rbeta(10000, alpha2, beta2)
+
+# Calculate probability
+mean(posterior1 > posterior2)
+```
+
+## Types of Gamma Priors
+
+Gamma priors are categorized based on their informativeness and the context of their use. This document explains the main types of Gamma priors and demonstrates their visualization in R.
+
+### 1. Non-Informative or Weak Priors
+
+These priors are used when there is little prior knowledge about the parameter:
+
+- **Flat or vague Gamma prior**:  
+  Assigns very small values to shape (\( \alpha \)) and rate (\( \beta \)), such as \( \text{Gamma}(0.001, 0.001) \). This results in a broad, nearly flat prior.
+
+- **Jeffreys prior**:  
+  For scale parameters, Jeffreys prior may take the form \( \text{Gamma}(\frac{1}{2}, 0) \), ensuring minimal prior influence.
+
+
+### 2. Informative Priors
+
+Incorporate strong prior beliefs based on historical data or expert knowledge:
+
+- **Concentrated Gamma prior**:  
+  Uses larger \( \alpha \) and \( \beta \) values to create a narrow distribution around a specific mean.  
+  Example: \( \text{Gamma}(10, 2) \), with a mean of 5 and variance of 2.5.
+
+
+### 3. Weakly Informative Priors
+
+These priors provide moderate guidance without being overly restrictive:
+
+- **Moderate Gamma prior**:  
+  Example: \( \text{Gamma}(2, 1) \), with a mean of 2 and variance of 2.
+
+
+### 4. Hierarchical Priors
+
+Used as hyperpriors in hierarchical models:
+
+- **Gamma hyperprior**:  
+  Often applied to variances or precisions in hierarchical Bayesian models.
+
+
+### 5. Empirical Priors
+
+Derived from observed data or related datasets:
+
+- **Data-driven Gamma prior**:  
+  Parameters \( \alpha \) and \( \beta \) are estimated based on historical information.
+
+### 6. Special Case Priors
+
+- **Conjugate Gamma prior**:  
+  Often paired with Poisson or Exponential likelihoods for computational simplicity.
+
+
+## Visualizing Gamma Priors in R
+
+The code below demonstrates how to visualize different types of Gamma priors.
+
+```{r}
+# Visualization of Gamma Priors
+x <- seq(0, 10, length.out = 100)
+
+# Non-informative prior
+gamma_flat <- dgamma(x, shape = 0.001, rate = 0.001)
+
+# Informative prior
+gamma_informative <- dgamma(x, shape = 10, rate = 2)
+
+# Weakly informative prior
+gamma_weak <- dgamma(x, shape = 2, rate = 1)
+
+# Plot the priors
+plot(x, gamma_flat, type = "l", col = "red", lwd = 2,
+     ylim = c(0, max(gamma_informative)),
+     xlab = "Parameter Value", ylab = "Density",
+     main = "Types of Gamma Priors")
+lines(x, gamma_informative, col = "blue", lwd = 2)
+lines(x, gamma_weak, col = "green", lwd = 2)
+
+legend("topright", legend = c("Non-Informative", "Informative", "Weakly Informative"),
+       col = c("red", "blue", "green"), lwd = 2)
+
+```
+
+## Example 2: Gamma Distribution - Modeling Call Center Wait Times
+
+### Scenario
+A call center manager wants to analyze the average wait time for customer service calls. From past experience, the manager believes that the wait time (in minutes) can be modeled as an exponential distribution, which is parameterized by the rate \( \lambda \) (calls per minute). To refine this model, the manager uses a Gamma prior for \( \lambda \), and based on data from 20 calls, finds the total wait time is 50 minutes.
+
+Questions:
+
+1. What is the posterior distribution of \( \lambda \)?
+2. What is the posterior mean of \( \lambda \)?
+3. What is a 95% credible interval for \( \lambda \)?
+
+## Gamma Distribution: Modeling Call Center Wait Times
+
+### Problem Description
+We aim to estimate the rate parameter \( \lambda \) of an exponential distribution modeling call center wait times. The prior for \( \lambda \) is Gamma-distributed with \( \text{Gamma}(\alpha = 2, \beta = 1) \). Given the observed data (total wait time = 50 minutes for 20 calls), we compute the posterior distribution.
+
+### Solution
+
+#### Step 1: Posterior Distribution
+Using the conjugate prior relationship, the posterior distribution for \( \lambda \) is:
+$$
+\lambda | \text{data} \sim \text{Gamma}(\alpha + n, \beta + \text{total wait time}),
+$$
+where \( n = 20 \) (number of calls) and total wait time = 50 minutes.
+
+#### Step 2: Calculate Posterior Parameters
+
+```{r}
+# Prior parameters
+alpha_prior <- 2
+beta_prior <- 1
+
+# Data
+n_calls <- 20
+total_wait_time <- 50
+
+# Posterior parameters
+alpha_posterior <- alpha_prior + n_calls
+beta_posterior <- beta_prior + total_wait_time
+
+alpha_posterior
+beta_posterior
+
+posterior_mean <- alpha_posterior / beta_posterior
+posterior_mean
+
+``` 
+#### Step 4: 95% Credible Interval
+The 95% credible interval for \( \lambda \) can be calculated using the quantiles of the Gamma distribution:
+```{r}
+
+credible_interval <- qgamma(c(0.025, 0.975), shape = alpha_posterior, rate = beta_posterior)
+
+credible_interval
+
+```
+---
+title: "Bayesian Analysis of Employee Productivity"
+output: html_document
+---
+
+## Example 2: Normal Distribution - Analyzing Employee Productivity
+
+A company tracks the daily productivity of its employees in terms of completed tasks. Historically, productivity is normally distributed with an unknown mean \( \mu \) and known variance \( \sigma^2 = 25 \). From a random sample of 15 employees, the average number of tasks completed is 20. Assume a normal prior for \( \mu \) with mean \( \mu_0 = 18 \) and variance \( \tau^2 = 4 \).
+
+### Questions
+1. What is the posterior distribution of \( \mu \)?
+2. What is the posterior mean of \( \mu \)?
+3. What is a 95% credible interval for \( \mu \)?
+
+## Solution
+
+### Step 1: Posterior Distribution
+The posterior distribution for \( \mu \) is:
+$$
+\mu | \text{data} \sim \text{Normal}(\mu_{\text{posterior}}, \tau^2_{\text{posterior}})
+$$
+where:
+$$
+\mu_{\text{posterior}} = \frac{\frac{\mu_0}{\tau^2} + \frac{\bar{x}}{\sigma^2 / n}}{\frac{1}{\tau^2} + \frac{1}{\sigma^2 / n}}, \quad \tau^2_{\text{posterior}} = \frac{1}{\frac{1}{\tau^2} + \frac{1}{\sigma^2 / n}}
+$$
+
+### Step 2: R Code to Compute Posterior Parameters
+
+```{r}
+# Prior parameters
+mu_prior <- 18
+tau2_prior <- 4
+
+# Data
+n <- 15
+x_bar <- 20
+sigma2 <- 25
+
+# Posterior calculations
+tau2_posterior <- 1 / (1 / tau2_prior + n / sigma2)
+mu_posterior <- tau2_posterior * (mu_prior / tau2_prior + n * x_bar / sigma2)
+
+mu_posterior
+tau2_posterior
+```
+#### Step 3: Posterior Mean
+The posterior mean \( \mu_{\text{posterior}}\) is already calculated above.
+
+#### Step 4: 95% Credible Interval
+The 95% credible interval for \(\mu\) is calculated using the quantiles of the posterior normal distribution.
+
+```{r}
+# Compute credible interval
+credible_interval <- qnorm(c(0.025, 0.975), mean = mu_posterior, sd = sqrt(tau2_posterior))
+credible_interval
+
+```
+
+
+## Linear regression
+
+Linear regression is a widely used statistical technique for modeling relationships between variables. In the Bayesian framework, linear regression is viewed through the lens of probability, where we incorporate prior beliefs about the model parameters and update these beliefs with observed data using Bayes' theorem.
+
+### Classical vs. Bayesian Linear Regression
+
+- **Classical Approach**: Parameters are estimated as fixed quantities using techniques like least squares or maximum likelihood estimation.
+
+- **Bayesian Approach**: Parameters are treated as random variables with probability distributions. The goal is to determine the posterior distribution of these parameters given the observed data.
+
+
+## Bayesian Linear Regression Framework
+
+### Model Specification
+Assume a simple linear regression model:
+$$
+y_i = \beta_0 + \beta_1 x_i + \epsilon_i, \quad \epsilon_i \sim \mathcal{N}(0, \sigma^2)
+$$
+where:
+- \( y_i \) is the response variable,
+- \( x_i \) is the predictor,
+- \( \beta_0 \) and \( \beta_1 \) are the regression coefficients,
+- \( \epsilon_i \) represents the residuals, assumed to be normally distributed with mean 0 and variance \( \sigma^2 \).
+
+In matrix form, this becomes:
+$$
+\mathbf{y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\epsilon}
+$$
+where:
+- \( \mathbf{y} \) is the \( n \times 1 \) vector of responses,
+- \( \mathbf{X} \) is the \( n \times p \) design matrix,
+- \( \boldsymbol{\beta} \) is the \( p \times 1 \) vector of regression coefficients,
+- \( \boldsymbol{\epsilon} \sim \mathcal{N}(\mathbf{0}, \sigma^2 \mathbf{I}) \).
+
+
+### Bayesian Framework
+
+1. **Prior Distribution**:
+   Specify prior beliefs about the parameters. For simplicity, assume:
+   $$
+   \boldsymbol{\beta} \sim \mathcal{N}(\boldsymbol{\beta}_0, \boldsymbol{\Sigma}_0), \quad \sigma^2 \sim \text{Inverse-Gamma}(a, b)
+  $$
+
+2. **Likelihood**:
+   The likelihood is derived from the assumed normal distribution of the residuals:
+   $$
+   p(\mathbf{y} | \boldsymbol{\beta}, \sigma^2) = \prod_{i=1}^n \mathcal{N}(y_i | \mathbf{x}_i^\top \boldsymbol{\beta}, \sigma^2)
+   $$
+
+3. **Posterior Distribution**:
+   Combine the prior and likelihood using Bayes' theorem:
+   $$
+   p(\boldsymbol{\beta}, \sigma^2 | \mathbf{y}) \propto p(\mathbf{y} | \boldsymbol{\beta}, \sigma^2) p(\boldsymbol{\beta}) p(\sigma^2)
+   $$
+
+
+## Example: Bayesian Linear Regression in R
+
+### Problem Setup
+Suppose we have data on house prices (\( y \)) and square footage (\( x \)), and we want to model the relationship using Bayesian linear regression.
+
+```{r}
+# Load necessary libraries
+library(rstanarm)
+
+# Simulated data
+set.seed(123)
+n <- 50
+x <- runif(n, 500, 3000) # Square footage
+y <- 50 + 0.1 * x + rnorm(n, 0, 25) # House prices
+
+# Fit Bayesian linear regression
+model <- stan_glm(y ~ x, prior = normal(0, 10), prior_intercept = normal(50, 10), chains = 4, iter = 2000)
+
+# Summary of the model
+summary(model)
+```
+
+### Posterior Analysis
+The posterior distributions of the parameters \( \beta_0 \) and \( \beta_1 \) are estimated using Markov Chain Monte Carlo (MCMC).
+
+```{r}
+# Plot posterior distributions
+plot(model, prob = 0.95)
+```
+
+## Interpretation
+
+1. **Posterior Mean**: The posterior mean of each parameter represents the updated estimate after observing the data.
+2. **Credible Interval**: The 95% credible interval for each parameter provides a range of values within which the parameter lies with 95% probability.
+3. **Prediction**: Bayesian regression allows us to make probabilistic predictions for new data points by integrating over the posterior distributions of the parameters.
+
+
+## Advantages of Bayesian Linear Regression
+
+1. **Incorporation of Prior Knowledge**: Bayesian methods allow for the inclusion of prior beliefs, making them useful when prior information is available.
+2. **Uncertainty Quantification**: Bayesian regression provides full distributions for parameters and predictions, not just point estimates.
+3. **Flexibility**: The Bayesian framework can handle complex models and adapt to small sample sizes better than classical methods.
+
+
+## Conclusion
+
+Bayesian linear regression provides a robust framework for understanding relationships between variables while accounting for uncertainty in a principled way. By leveraging prior information and updating beliefs with observed data, this approach offers a powerful alternative to classical regression techniques.
+
+
+
+
+
+
+<!--chapter:end:index.Rmd-->
+
+# The pool of tears
+
+
+<!--chapter:end:02-tears.Rmd-->
+
+# A caucus-race and a long tale
+
+<!--chapter:end:03-race.Rmd-->
+
