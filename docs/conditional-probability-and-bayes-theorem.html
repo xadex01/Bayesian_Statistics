@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity</title>
-  <meta name="description" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <title>Chapter 2 Conditional Probability and Bayes’ Theorem | Bayesian Analysis of Employee Productivity</title>
+  <meta name="description" content="Chapter 2 Conditional Probability and Bayes’ Theorem | Bayesian Analysis of Employee Productivity" />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <meta property="og:title" content="Chapter 2 Conditional Probability and Bayes’ Theorem | Bayesian Analysis of Employee Productivity" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <meta name="twitter:title" content="Chapter 2 Conditional Probability and Bayes’ Theorem | Bayesian Analysis of Employee Productivity" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="solutions.html"/>
-<link rel="next" href="a-caucus-race-and-a-long-tale.html"/>
+<link rel="prev" href="index.html"/>
+<link rel="next" href="common-probability-distributions.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -337,17 +337,86 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="the-pool-of-tears" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chapter 10</span> The pool of tears<a href="the-pool-of-tears.html#the-pool-of-tears" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<div id="conditional-probability-and-bayes-theorem" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Conditional Probability and Bayes’ Theorem<a href="conditional-probability-and-bayes-theorem.html#conditional-probability-and-bayes-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="conditional-probability" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Conditional Probability<a href="conditional-probability-and-bayes-theorem.html#conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Conditional probability is the probability of an event occurring given that another event has already occurred. It is denoted as <span class="math inline">\(P(A|B)\)</span>, which represents the probability of event <span class="math inline">\(A\)</span> occurring given that event <span class="math inline">\(B\)</span> has occurred.</p>
+<p>The formula for conditional probability is:
+<span class="math display">\[ P(A|B) = \frac{P(A \cap B)}{P(B)}, \quad \text{where } P(B) &gt; 0 \]</span>
+Here:
+- <span class="math inline">\(P(A \cap B)\)</span>: The joint probability of both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> occurring.
+- <span class="math inline">\(P(B)\)</span>: The probability of event <span class="math inline">\(B\)</span>.</p>
+</div>
+<div id="bayes-theorem-1" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Bayes’ Theorem<a href="conditional-probability-and-bayes-theorem.html#bayes-theorem-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Bayes’ Theorem is a fundamental result in probability theory that relates the conditional probabilities of two events. It provides a way to update our beliefs about a hypothesis (<span class="math inline">\(H\)</span>) based on new evidence (<span class="math inline">\(E\)</span>).</p>
+<p>The formula for Bayes’ Theorem is:
+<span class="math display">\[ P(H|E) = \frac{P(E|H)P(H)}{P(E)} \]</span>
+Here:
+- <span class="math inline">\(P(H|E)\)</span>: The posterior probability of the hypothesis <span class="math inline">\(H\)</span> given the evidence <span class="math inline">\(E\)</span>.
+- <span class="math inline">\(P(E|H)\)</span>: The likelihood, or the probability of observing the evidence given the hypothesis.
+- <span class="math inline">\(P(H)\)</span>: The prior probability of the hypothesis <span class="math inline">\(H\)</span>.
+- <span class="math inline">\(P(E)\)</span>: The marginal probability of the evidence, calculated as:
+<span class="math display">\[ P(E) = \sum_{i} P(E|H_i)P(H_i) \]</span>
+where <span class="math inline">\(H_i\)</span> represents all possible hypotheses.</p>
+</div>
+<div id="worked-example-1-disease-diagnosis" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Worked Example 1: Disease Diagnosis<a href="conditional-probability-and-bayes-theorem.html#worked-example-1-disease-diagnosis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose a diagnostic test is used to detect a rare disease that affects 1 in 1,000 people (<span class="math inline">\(P(D) = 0.001\)</span>). The test has:
+- Sensitivity (true positive rate): 99% (<span class="math inline">\(P(T|D) = 0.99\)</span>).
+- Specificity (true negative rate): 95% (<span class="math inline">\(P(T^c|D^c) = 0.95\)</span>).</p>
+<p>We want to find the probability that a person actually has the disease given that they tested positive, <span class="math inline">\(P(D|T)\)</span>.</p>
+<div id="solution" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Solution<a href="conditional-probability-and-bayes-theorem.html#solution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using Bayes’ Theorem:
+<span class="math display">\[ P(D|T) = \frac{P(T|D)P(D)}{P(T)} \]</span></p>
+<p>First, calculate <span class="math inline">\(P(T)\)</span>, the total probability of a positive test:
+<span class="math display">\[ P(T) = P(T|D)P(D) + P(T|D^c)P(D^c) \]</span>
+Here:
+- <span class="math inline">\(P(D^c) = 1 - P(D) = 0.999\)</span>
+- <span class="math inline">\(P(T|D^c) = 1 - P(T^c|D^c) = 0.05\)</span></p>
+<p>Substitute the values:
+<span class="math display">\[ P(T) = (0.99)(0.001) + (0.05)(0.999) = 0.00099 + 0.04995 = 0.05094 \]</span></p>
+<p>Now calculate <span class="math inline">\(P(D|T)\)</span>:
+<span class="math display">\[ P(D|T) = \frac{(0.99)(0.001)}{0.05094} = \frac{0.00099}{0.05094} \approx 0.0194 \]</span></p>
+<p>Thus, the probability that a person has the disease given a positive test result is approximately 1.94%.</p>
+</div>
+</div>
+<div id="worked-example-2-spam-email-classification" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Worked Example 2: Spam Email Classification<a href="conditional-probability-and-bayes-theorem.html#worked-example-2-spam-email-classification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose an email filter uses Bayes’ Theorem to classify emails as spam or not spam. Historical data shows:
+- <span class="math inline">\(P(S)\)</span>: The probability an email is spam is 20%.
+- <span class="math inline">\(P(W|S)\)</span>: The probability of the word “win” appearing in a spam email is 80%.
+- <span class="math inline">\(P(W|S^c)\)</span>: The probability of the word “win” appearing in a non-spam email is 5%.</p>
+<p>We want to find the probability that an email is spam given that it contains the word “win,” <span class="math inline">\(P(S|W)\)</span>.</p>
+<div id="solution-1" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Solution<a href="conditional-probability-and-bayes-theorem.html#solution-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Using Bayes’ Theorem:
+<span class="math display">\[ P(S|W) = \frac{P(W|S)P(S)}{P(W)} \]</span></p>
+<p>First, calculate <span class="math inline">\(P(W)\)</span>, the total probability of the word “win”:
+<span class="math display">\[ P(W) = P(W|S)P(S) + P(W|S^c)P(S^c) \]</span>
+Here:
+- <span class="math inline">\(P(S^c) = 1 - P(S) = 0.8\)</span></p>
+<p>Substitute the values:
+<span class="math display">\[ P(W) = (0.8)(0.2) + (0.05)(0.8) = 0.16 + 0.04 = 0.2 \]</span></p>
+<p>Now calculate <span class="math inline">\(P(S|W)\)</span>:
+<span class="math display">\[ P(S|W) = \frac{(0.8)(0.2)}{0.2} = \frac{0.16}{0.2} = 0.8 \]</span></p>
+<p>Thus, the probability that an email is spam given that it contains the word “win” is 80%.</p>
+</div>
+</div>
+<div id="summary" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Summary<a href="conditional-probability-and-bayes-theorem.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Conditional probability provides the foundation for reasoning under uncertainty, while Bayes’ Theorem enables us to update probabilities as new evidence becomes available. These concepts are widely used in fields such as medicine, machine learning, and spam filtering, offering powerful tools for decision-making and inference.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="solutions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a-caucus-race-and-a-long-tale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="common-probability-distributions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -378,7 +447,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/xadex01/Bayesian_Statistics/edit/main/02-tears.Rmd",
+"link": "https://github.com/xadex01/Bayesian_Statistics/edit/main/index.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -386,7 +455,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/xadex01/Bayesian_Statistics/blob/main/02-tears.Rmd",
+"link": "https://github.com/xadex01/Bayesian_Statistics/blob/main/index.Rmd",
 "text": null
 },
 "download": null,

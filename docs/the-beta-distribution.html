@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity</title>
-  <meta name="description" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <title>Chapter 4 The Beta Distribution | Bayesian Analysis of Employee Productivity</title>
+  <meta name="description" content="Chapter 4 The Beta Distribution | Bayesian Analysis of Employee Productivity" />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <meta property="og:title" content="Chapter 4 The Beta Distribution | Bayesian Analysis of Employee Productivity" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <meta name="twitter:title" content="Chapter 4 The Beta Distribution | Bayesian Analysis of Employee Productivity" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="solutions.html"/>
-<link rel="next" href="a-caucus-race-and-a-long-tale.html"/>
+<link rel="prev" href="common-probability-distributions.html"/>
+<link rel="next" href="bayesian-inference.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -337,17 +337,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="the-pool-of-tears" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chapter 10</span> The pool of tears<a href="the-pool-of-tears.html#the-pool-of-tears" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<div id="the-beta-distribution" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> The Beta Distribution<a href="the-beta-distribution.html#the-beta-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="definition" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Definition<a href="the-beta-distribution.html#definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The beta distribution is a continuous probability distribution defined on the interval <span class="math inline">\([0, 1]\)</span>. Its probability density function (PDF) is:</p>
+<p><span class="math display">\[
+f(p; \alpha, \beta) = \frac{p^{\alpha-1} (1-p)^{\beta-1}}{B(\alpha, \beta)}, \quad 0 \leq p \leq 1,
+\]</span></p>
+<p>where <span class="math inline">\(\alpha &gt; 0\)</span> and <span class="math inline">\(\beta &gt; 0\)</span> are shape parameters, and <span class="math inline">\(B(\alpha, \beta)\)</span> is the beta function.</p>
+</div>
+<div id="properties" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Properties<a href="the-beta-distribution.html#properties" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Mean</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\mathbb{E}[p] = \frac{\alpha}{\alpha + \beta}.
+\]</span></p>
+<ul>
+<li><strong>Variance</strong>:</li>
+</ul>
+<p><span class="math display">\[
+\text{Var}(p) = \frac{\alpha \beta}{(\alpha + \beta)^2 (\alpha + \beta + 1)}.
+\]</span></p>
+</div>
+<div id="shape-of-the-distribution" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Shape of the Distribution<a href="the-beta-distribution.html#shape-of-the-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The beta distribution can take on various shapes depending on <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>:</p>
+<ul>
+<li>Symmetric when <span class="math inline">\(\alpha = \beta\)</span>.</li>
+<li>Skewed to the right when <span class="math inline">\(\alpha &lt; \beta\)</span>.</li>
+<li>Skewed to the left when <span class="math inline">\(\alpha &gt; \beta\)</span>.</li>
+</ul>
+<p><img src="Beta.png" width="70%" /></p>
+<p><em>Shapes of Beta Distributions.</em></p>
+<p><img src="Gamma.png" width="70%" /></p>
+<p><em>Shapes of Gamma Distributions.</em></p>
+</div>
+<div id="worked-example" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Worked Example<a href="the-beta-distribution.html#worked-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For <span class="math inline">\(\alpha = 3\)</span> and <span class="math inline">\(\beta = 2\)</span>, the PDF is:</p>
+<p><span class="math display">\[
+f(p; 3, 2) = \frac{p^{3-1} (1-p)^{2-1}}{B(3, 2)} = 6 p^2 (1-p).
+\]</span></p>
+<p>The mean is:</p>
+<p><span class="math display">\[
+\mathbb{E}[p] = \frac{\alpha}{\alpha + \beta} = \frac{3}{3+2} = 0.6.
+\]</span></p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="solutions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a-caucus-race-and-a-long-tale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="common-probability-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bayesian-inference.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -378,7 +424,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/xadex01/Bayesian_Statistics/edit/main/02-tears.Rmd",
+"link": "https://github.com/xadex01/Bayesian_Statistics/edit/main/index.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -386,7 +432,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/xadex01/Bayesian_Statistics/blob/main/02-tears.Rmd",
+"link": "https://github.com/xadex01/Bayesian_Statistics/blob/main/index.Rmd",
 "text": null
 },
 "download": null,

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity</title>
-  <meta name="description" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <title>Chapter 3 Common Probability Distributions | Bayesian Analysis of Employee Productivity</title>
+  <meta name="description" content="Chapter 3 Common Probability Distributions | Bayesian Analysis of Employee Productivity" />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <meta property="og:title" content="Chapter 3 Common Probability Distributions | Bayesian Analysis of Employee Productivity" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <meta name="twitter:title" content="Chapter 3 Common Probability Distributions | Bayesian Analysis of Employee Productivity" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="solutions.html"/>
-<link rel="next" href="a-caucus-race-and-a-long-tale.html"/>
+<link rel="prev" href="conditional-probability-and-bayes-theorem.html"/>
+<link rel="next" href="the-beta-distribution.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -337,17 +337,298 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="the-pool-of-tears" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chapter 10</span> The pool of tears<a href="the-pool-of-tears.html#the-pool-of-tears" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<div id="common-probability-distributions" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Common Probability Distributions<a href="common-probability-distributions.html#common-probability-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="bernoulli-distribution" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Bernoulli Distribution<a href="common-probability-distributions.html#bernoulli-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The Bernoulli distribution models the outcome of a single trial with two possible outcomes: success (1) and failure (0). It is commonly used in binary experiments.</p>
+<div id="probability-mass-function-pmf" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Probability Mass Function (PMF)<a href="common-probability-distributions.html#probability-mass-function-pmf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The PMF of a Bernoulli random variable <span class="math inline">\(X\)</span> is:
+<span class="math display">\[
+P(X = x) = \begin{cases}
+p, &amp; \text{if } x = 1, \\
+1 - p, &amp; \text{if } x = 0, \\ \end{cases}
+\]</span>
+where <span class="math inline">\(p\)</span> is the probability of success (<span class="math inline">\(0 \leq p \leq 1\)</span>).</p>
+</div>
+<div id="mean-and-variance" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Mean and Variance<a href="common-probability-distributions.html#mean-and-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[
+\text{Mean: } \mathbb{E}[X] = p, \quad \text{Variance: } \text{Var}(X) = p(1-p).
+\]</span></p>
+</div>
+<div id="cumulative-distribution-function-cdf" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Cumulative Distribution Function (CDF)<a href="common-probability-distributions.html#cumulative-distribution-function-cdf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The CDF is given by:
+<span class="math display">\[
+F(x) = \begin{cases}
+0, &amp; \text{if } x &lt; 0, \\
+1-p, &amp; \text{if } 0 \leq x &lt; 1, \\
+1, &amp; \text{if } x \geq 1. \end{cases}
+\]</span></p>
+</div>
+<div id="worked-example-1-biased-coin-toss" class="section level3 hasAnchor" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Worked Example 1: Biased Coin Toss<a href="common-probability-distributions.html#worked-example-1-biased-coin-toss" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>A biased coin shows heads (<span class="math inline">\(X = 1\)</span>) with probability <span class="math inline">\(p = 0.6\)</span>. Compute the mean, variance, and the probability of heads:
+- <strong>Mean:</strong> <span class="math inline">\(\mathbb{E}[X] = p = 0.6\)</span>.
+- <strong>Variance:</strong> <span class="math inline">\(\text{Var}(X) = p(1-p) = 0.6(1-0.6) = 0.24\)</span>.
+- <strong>Probability of heads:</strong> <span class="math inline">\(P(X = 1) = p = 0.6\)</span>.</p>
+</div>
+<div id="worked-example-2-quality-control" class="section level3 hasAnchor" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> Worked Example 2: Quality Control<a href="common-probability-distributions.html#worked-example-2-quality-control" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In a factory, <span class="math inline">\(p = 0.95\)</span> represents the probability that a product is non-defective. Compute:
+- <span class="math inline">\(P(X = 1)\)</span>: The probability of a non-defective product is <span class="math inline">\(0.95\)</span>.
+- CDF at <span class="math inline">\(x = 0.5\)</span>: <span class="math inline">\(F(0.5) = 1-p = 0.05\)</span>.</p>
+</div>
+</div>
+<div id="uniform-distribution" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Uniform Distribution<a href="common-probability-distributions.html#uniform-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The uniform distribution assumes all outcomes in a given range are equally likely.</p>
+<div id="probability-density-function-pdf" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Probability Density Function (PDF)<a href="common-probability-distributions.html#probability-density-function-pdf" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>For a continuous uniform random variable <span class="math inline">\(X\)</span> over <span class="math inline">\([a, b]\)</span>, the PDF is:
+<span class="math display">\[
+f(x) = \begin{cases}
+\frac{1}{b-a}, &amp; \text{if } a \leq x \leq b, \\
+0, &amp; \text{otherwise}. \end{cases}
+\]</span></p>
+</div>
+<div id="mean-and-variance-1" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Mean and Variance<a href="common-probability-distributions.html#mean-and-variance-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[
+\text{Mean: } \mathbb{E}[X] = \frac{a+b}{2}, \quad \text{Variance: } \text{Var}(X) = \frac{(b-a)^2}{12}.
+\]</span></p>
+</div>
+<div id="cumulative-distribution-function-cdf-1" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Cumulative Distribution Function (CDF)<a href="common-probability-distributions.html#cumulative-distribution-function-cdf-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[
+F(x) = \begin{cases}
+0, &amp; \text{if } x &lt; a, \\
+\frac{x-a}{b-a}, &amp; \text{if } a \leq x \leq b, \\
+1, &amp; \text{if } x &gt; b. \end{cases}
+\]</span></p>
+</div>
+<div id="worked-example-1-random-number-generator" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Worked Example 1: Random Number Generator<a href="common-probability-distributions.html#worked-example-1-random-number-generator" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose <span class="math inline">\(X \sim U(0, 1)\)</span>. Compute:
+- <strong>Mean:</strong> <span class="math inline">\(\mathbb{E}[X] = \frac{0+1}{2} = 0.5\)</span>.
+- <strong>Variance:</strong> <span class="math inline">\(\text{Var}(X) = \frac{(1-0)^2}{12} = 0.0833\)</span>.
+- <strong>Probability <span class="math inline">\(P(0.2 \leq X \leq 0.5)\)</span>:</strong>
+<span class="math display">\[
+  P(0.2 \leq X \leq 0.5) = \int_{0.2}^{0.5} f(x) \, dx = \int_{0.2}^{0.5} 1 \, dx = 0.3.
+  \]</span></p>
+</div>
+<div id="worked-example-2-waiting-time" class="section level3 hasAnchor" number="3.2.5">
+<h3><span class="header-section-number">3.2.5</span> Worked Example 2: Waiting Time<a href="common-probability-distributions.html#worked-example-2-waiting-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose <span class="math inline">\(X \sim U(0, 20)\)</span>. Compute:
+- <strong>Mean:</strong> <span class="math inline">\(\mathbb{E}[X] = \frac{0+20}{2} = 10\)</span>.
+- <strong>Variance:</strong> <span class="math inline">\(\text{Var}(X) = \frac{(20-0)^2}{12} = 33.33\)</span>.
+- <strong><span class="math inline">\(P(X \leq 5)\)</span>:</strong>
+<span class="math display">\[
+  F(5) = \frac{5-0}{20-0} = 0.25.
+  \]</span></p>
+</div>
+</div>
+<div id="exponential-distribution" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Exponential Distribution<a href="common-probability-distributions.html#exponential-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The exponential distribution models the time between events in a Poisson process.</p>
+<div id="understanding-exponential-distribution" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Understanding Exponential Distribution<a href="common-probability-distributions.html#understanding-exponential-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The exponential distribution is a way to explain <strong>how long you wait for something random to happen</strong>, like the time between events.</p>
+</div>
+</div>
+<div id="example-waiting-for-a-bus" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Example: Waiting for a Bus<a href="common-probability-distributions.html#example-waiting-for-a-bus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Imagine you’re at a bus stop, and buses come at random times. The exponential distribution helps answer questions like:</p>
+<ul>
+<li>“How long will I wait for the next bus?”</li>
+<li>“What’s the chance it will arrive in the next 5 minutes?”</li>
+</ul>
+<div id="key-ideas" class="section level3 hasAnchor" number="3.4.1">
+<h3><span class="header-section-number">3.4.1</span> Key Ideas:<a href="common-probability-distributions.html#key-ideas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Random Events</strong>:
+<ul>
+<li>It’s for things that happen randomly, like waiting for a bus, how long a battery lasts, or time between phone calls.</li>
+</ul></li>
+<li><strong>Fair Start</strong> (Memoryless Property):
+<ul>
+<li>The time you’ve already waited doesn’t affect how much longer you’ll wait.<br />
+Example: If you’ve waited 10 minutes, the chance of the bus arriving in the next minute is the same as when you first arrived.</li>
+</ul></li>
+<li><strong>Most Things Happen Quickly</strong>:
+<ul>
+<li>The chance of something happening (like the bus arriving) is higher at the start and decreases the longer you wait.</li>
+</ul></li>
+</ol>
+</div>
+<div id="simple-shape" class="section level3 hasAnchor" number="3.4.2">
+<h3><span class="header-section-number">3.4.2</span> Simple Shape:<a href="common-probability-distributions.html#simple-shape" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Think of the waiting time as a hill:
+<ul>
+<li><strong>Starts high</strong> (most events happen quickly).<br />
+</li>
+<li><strong>Slopes down</strong> (few events take a long time).</li>
+</ul></li>
+</ul>
+</div>
+<div id="why-its-useful" class="section level3 hasAnchor" number="3.4.3">
+<h3><span class="header-section-number">3.4.3</span> Why It’s Useful:<a href="common-probability-distributions.html#why-its-useful" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>If you know the <strong>average waiting time</strong>, you can use the exponential distribution to predict:</p>
+<ul>
+<li>How likely something is to happen soon.</li>
+<li>How likely it is to take longer.</li>
+</ul>
+</div>
+<div id="probability-density-function-pdf-1" class="section level3 hasAnchor" number="3.4.4">
+<h3><span class="header-section-number">3.4.4</span> Probability Density Function (PDF)<a href="common-probability-distributions.html#probability-density-function-pdf-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[
+f(x; \lambda) = \begin{cases}
+\lambda e^{-\lambda x}, &amp; \text{if } x \geq 0, \\
+0, &amp; \text{otherwise}. \end{cases}
+\]</span></p>
+</div>
+<div id="mean-and-variance-2" class="section level3 hasAnchor" number="3.4.5">
+<h3><span class="header-section-number">3.4.5</span> Mean and Variance<a href="common-probability-distributions.html#mean-and-variance-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[
+\text{Mean: } \mathbb{E}[X] = \frac{1}{\lambda}, \quad \text{Variance: } \text{Var}(X) = \frac{1}{\lambda^2}.
+\]</span></p>
+</div>
+<div id="cumulative-distribution-function-cdf-2" class="section level3 hasAnchor" number="3.4.6">
+<h3><span class="header-section-number">3.4.6</span> Cumulative Distribution Function (CDF)<a href="common-probability-distributions.html#cumulative-distribution-function-cdf-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[
+F(x; \lambda) = \begin{cases}
+1 - e^{-\lambda x}, &amp; \text{if } x \geq 0, \\
+0, &amp; \text{otherwise}. \end{cases}
+\]</span></p>
+</div>
+<div id="worked-example-1-time-between-phone-calls" class="section level3 hasAnchor" number="3.4.7">
+<h3><span class="header-section-number">3.4.7</span> Worked Example 1: Time Between Phone Calls<a href="common-probability-distributions.html#worked-example-1-time-between-phone-calls" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose <span class="math inline">\(\lambda = 3\)</span> calls/hour. Compute:</p>
+<ul>
+<li><strong>Mean:</strong> <span class="math inline">\(\mathbb{E}[X] = \frac{1}{3} = 0.333\)</span> hours.</li>
+<li><strong>Variance:</strong> <span class="math inline">\(\text{Var}(X) = \frac{1}{9} = 0.111\)</span>.</li>
+<li><strong><span class="math inline">\(P(X \leq 0.1)\)</span>:</strong>
+<span class="math display">\[
+F(0.1) = 1 - e^{-3 \cdot 0.1} = 1 - e^{-0.3} \approx 0.259.
+\]</span></li>
+</ul>
+</div>
+<div id="worked-example-2-machine-failure-time" class="section level3 hasAnchor" number="3.4.8">
+<h3><span class="header-section-number">3.4.8</span> Worked Example 2: Machine Failure Time<a href="common-probability-distributions.html#worked-example-2-machine-failure-time" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose <span class="math inline">\(\lambda = 0.1\)</span> failures/hour. Compute:</p>
+<ul>
+<li><strong>Mean:</strong> <span class="math inline">\(\mathbb{E}[X] = 10\)</span> hours.</li>
+<li><strong>Variance:</strong> <span class="math inline">\(\text{Var}(X) = 100\)</span>.</li>
+<li><strong><span class="math inline">\(P(X \geq 20)\)</span>:</strong>
+<span class="math display">\[
+P(X \geq 20) = 1 - F(20) = e^{-0.1 \cdot 20} = e^{-2} \approx 0.135.
+\]</span>
+### Worked Example: Exponential Distribution</li>
+</ul>
+<p>Suppose you are at a bus stop, and buses arrive, on average, every <strong>10 minutes</strong>. You want to calculate:</p>
+<ol style="list-style-type: decimal">
+<li>The probability of waiting less than 5 minutes for the bus.</li>
+<li>The probability of waiting more than 15 minutes.</li>
+<li>The time <span class="math inline">\(t\)</span> such that there’s a 90% chance the bus arrives by then.</li>
+<li>Simulate 10 random waiting times for the bus.</li>
+</ol>
+</div>
+<div id="step-1-key-information" class="section level3 hasAnchor" number="3.4.9">
+<h3><span class="header-section-number">3.4.9</span> Step 1: Key Information<a href="common-probability-distributions.html#step-1-key-information" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Mean waiting time (<span class="math inline">\(\mu\)</span>)</strong>: 10 minutes.<br />
+</li>
+<li><strong>Rate (<span class="math inline">\(\lambda\)</span>)</strong>:<br />
+<span class="math display">\[
+\lambda = \frac{1}{\mu} = \frac{1}{10} = 0.1
+\]</span></li>
+</ul>
+<p>The exponential distribution is defined as:<br />
+<span class="math display">\[
+f(t) = \lambda e^{-\lambda t}
+\]</span></p>
+</div>
+<div id="step-2-r-code-for-calculations" class="section level3 hasAnchor" number="3.4.10">
+<h3><span class="header-section-number">3.4.10</span> Step 2: R Code for Calculations<a href="common-probability-distributions.html#step-2-r-code-for-calculations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="common-probability-distributions.html#cb1-1" tabindex="-1"></a><span class="co"># Parameters</span></span>
+<span id="cb1-2"><a href="common-probability-distributions.html#cb1-2" tabindex="-1"></a>lambda <span class="ot">&lt;-</span> <span class="fl">0.1</span>  <span class="co"># Rate (1/mean)</span></span>
+<span id="cb1-3"><a href="common-probability-distributions.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="common-probability-distributions.html#cb1-4" tabindex="-1"></a><span class="co"># 1. Probability of waiting less than 5 minutes</span></span>
+<span id="cb1-5"><a href="common-probability-distributions.html#cb1-5" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="dv">5</span>  <span class="co"># Time in minutes</span></span>
+<span id="cb1-6"><a href="common-probability-distributions.html#cb1-6" tabindex="-1"></a>pexp_value_5 <span class="ot">&lt;-</span> <span class="fu">pexp</span>(t, <span class="at">rate =</span> lambda)  <span class="co"># Cumulative probability P(T &lt;= 5)</span></span>
+<span id="cb1-7"><a href="common-probability-distributions.html#cb1-7" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Probability of waiting less than 5 minutes:&quot;</span>, <span class="fu">round</span>(pexp_value_5, <span class="dv">4</span>)))</span></code></pre></div>
+<pre><code>## [1] &quot;Probability of waiting less than 5 minutes: 0.3935&quot;</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="common-probability-distributions.html#cb3-1" tabindex="-1"></a><span class="co"># 2. Probability of waiting more than 15 minutes</span></span>
+<span id="cb3-2"><a href="common-probability-distributions.html#cb3-2" tabindex="-1"></a>t <span class="ot">&lt;-</span> <span class="dv">15</span>  <span class="co"># Time in minutes</span></span>
+<span id="cb3-3"><a href="common-probability-distributions.html#cb3-3" tabindex="-1"></a>pexp_value_15 <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pexp</span>(t, <span class="at">rate =</span> lambda)  <span class="co"># Complement of cumulative probability</span></span>
+<span id="cb3-4"><a href="common-probability-distributions.html#cb3-4" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Probability of waiting more than 15 minutes:&quot;</span>, <span class="fu">round</span>(pexp_value_15, <span class="dv">4</span>)))</span></code></pre></div>
+<pre><code>## [1] &quot;Probability of waiting more than 15 minutes: 0.2231&quot;</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="common-probability-distributions.html#cb5-1" tabindex="-1"></a><span class="co"># 3. Time such that there’s a 90% chance the bus arrives by then</span></span>
+<span id="cb5-2"><a href="common-probability-distributions.html#cb5-2" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.9</span>  <span class="co"># Cumulative probability</span></span>
+<span id="cb5-3"><a href="common-probability-distributions.html#cb5-3" tabindex="-1"></a>qexp_value <span class="ot">&lt;-</span> <span class="fu">qexp</span>(p, <span class="at">rate =</span> lambda)  <span class="co"># Quantile for P(T &lt;= t) = 0.9</span></span>
+<span id="cb5-4"><a href="common-probability-distributions.html#cb5-4" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">paste</span>(<span class="st">&quot;Time for 90% probability:&quot;</span>, <span class="fu">round</span>(qexp_value, <span class="dv">2</span>), <span class="st">&quot;minutes&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;Time for 90% probability: 23.03 minutes&quot;</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="common-probability-distributions.html#cb7-1" tabindex="-1"></a><span class="co"># 4. Simulate 10 random waiting times</span></span>
+<span id="cb7-2"><a href="common-probability-distributions.html#cb7-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span>  <span class="co"># Number of simulations</span></span>
+<span id="cb7-3"><a href="common-probability-distributions.html#cb7-3" tabindex="-1"></a>random_values <span class="ot">&lt;-</span> <span class="fu">rexp</span>(n, <span class="at">rate =</span> lambda)  <span class="co"># Simulated waiting times</span></span>
+<span id="cb7-4"><a href="common-probability-distributions.html#cb7-4" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;Simulated waiting times:&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;Simulated waiting times:&quot;</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="common-probability-distributions.html#cb9-1" tabindex="-1"></a><span class="fu">print</span>(random_values)</span></code></pre></div>
+<pre><code>##  [1] 29.584720 40.239382 29.252971 23.809794  3.108548  6.513756  3.030299
+##  [8]  3.189395  8.135772 10.347904</code></pre>
+</div>
+</div>
+<div id="normal-distribution" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Normal Distribution<a href="common-probability-distributions.html#normal-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The normal distribution describes data clustering around a mean.</p>
+<div id="probability-density-function-pdf-2" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Probability Density Function (PDF)<a href="common-probability-distributions.html#probability-density-function-pdf-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[
+f(x; \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} e^{-\frac{(x-\mu)^2}{2\sigma^2}},
+\]</span>
+where <span class="math inline">\(\mu\)</span> is the mean and <span class="math inline">\(\sigma^2\)</span> the variance.</p>
+</div>
+<div id="mean-and-variance-3" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Mean and Variance<a href="common-probability-distributions.html#mean-and-variance-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[
+\text{Mean: } \mathbb{E}[X] = \mu, \quad \text{Variance: } \text{Var}(X) = \sigma^2.
+\]</span></p>
+</div>
+<div id="cumulative-distribution-function-cdf-3" class="section level3 hasAnchor" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> Cumulative Distribution Function (CDF)<a href="common-probability-distributions.html#cumulative-distribution-function-cdf-3" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The CDF is computed as:
+<span class="math display">\[
+F(x) = \int_{-\infty}^x f(t; \mu, \sigma^2) \, dt.
+\]</span></p>
+</div>
+<div id="worked-example-1-exam-scores" class="section level3 hasAnchor" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> Worked Example 1: Exam Scores<a href="common-probability-distributions.html#worked-example-1-exam-scores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose <span class="math inline">\(X \sim N(70, 10^2)\)</span>. Compute:
+- <strong><span class="math inline">\(P(60 \leq X \leq 80)\)</span>:</strong>
+<span class="math display">\[
+  P(-1 \leq Z \leq 1) = 0.6827.
+  \]</span>
+### Worked Example 2: Heights of Individuals</p>
+<p>Suppose <span class="math inline">\(X \sim N(170, 64)\)</span>. Compute:</p>
+<ul>
+<li><span class="math inline">\(P(X \geq 180)\)</span>:</li>
+</ul>
+<p><span class="math display">\[
+P(Z \geq 1.25) = 1 - P(Z &lt; 1.25) = 1 - 0.8944 = 0.1056.
+\]</span></p>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="solutions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a-caucus-race-and-a-long-tale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="conditional-probability-and-bayes-theorem.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-beta-distribution.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -378,7 +659,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/xadex01/Bayesian_Statistics/edit/main/02-tears.Rmd",
+"link": "https://github.com/xadex01/Bayesian_Statistics/edit/main/index.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -386,7 +667,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/xadex01/Bayesian_Statistics/blob/main/02-tears.Rmd",
+"link": "https://github.com/xadex01/Bayesian_Statistics/blob/main/index.Rmd",
 "text": null
 },
 "download": null,

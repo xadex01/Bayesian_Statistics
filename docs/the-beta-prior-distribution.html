@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity</title>
-  <meta name="description" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <title>Chapter 6 The Beta Prior Distribution | Bayesian Analysis of Employee Productivity</title>
+  <meta name="description" content="Chapter 6 The Beta Prior Distribution | Bayesian Analysis of Employee Productivity" />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <meta property="og:title" content="Chapter 6 The Beta Prior Distribution | Bayesian Analysis of Employee Productivity" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <meta name="twitter:title" content="Chapter 6 The Beta Prior Distribution | Bayesian Analysis of Employee Productivity" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="solutions.html"/>
-<link rel="next" href="a-caucus-race-and-a-long-tale.html"/>
+<link rel="prev" href="bayesian-inference.html"/>
+<link rel="next" href="posterior-interval.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -337,17 +337,54 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="the-pool-of-tears" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chapter 10</span> The pool of tears<a href="the-pool-of-tears.html#the-pool-of-tears" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<div id="the-beta-prior-distribution" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> The Beta Prior Distribution<a href="the-beta-prior-distribution.html#the-beta-prior-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="concept" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Concept<a href="the-beta-prior-distribution.html#concept" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The beta distribution is often used as a prior distribution for probabilities in Bayesian inference because:</p>
+<ul>
+<li>It is defined on <span class="math inline">\([0, 1]\)</span>, making it ideal for modeling probabilities.</li>
+<li>It is conjugate to the binomial and Bernoulli likelihoods, simplifying Bayesian updating.</li>
+</ul>
+<p>If the prior distribution of <span class="math inline">\(p\)</span> is:</p>
+<p><span class="math display">\[
+p \sim \text{Beta}(\alpha, \beta),
+\]</span></p>
+<p>and the observed data follow a binomial likelihood with <span class="math inline">\(k\)</span> successes in <span class="math inline">\(n\)</span> trials, the posterior distribution of <span class="math inline">\(p\)</span> is:</p>
+<p><span class="math display">\[
+p \mid k, n \sim \text{Beta}(\alpha + k, \beta + n - k).
+\]</span></p>
+</div>
+<div id="worked-example-bayesian-updating" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Worked Example: Bayesian Updating<a href="the-beta-prior-distribution.html#worked-example-bayesian-updating" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose:</p>
+<ul>
+<li><strong>Prior:</strong> <span class="math inline">\(p \sim \text{Beta}(1, 1)\)</span> (uniform prior).</li>
+<li><strong>Data:</strong> 6 successes in 10 trials.</li>
+</ul>
+<p>The posterior parameters are:</p>
+<p><span class="math display">\[
+\alpha&#39; = \alpha + k = 1 + 6 = 7, \quad \beta&#39; = \beta + (n - k) = 1 + (10 - 6) = 5.
+\]</span></p>
+<p>Thus, the posterior distribution is:</p>
+<p><span class="math display">\[
+p \mid \text{data} \sim \text{Beta}(7, 5).
+\]</span></p>
+<p>The posterior mean is:</p>
+<p><span class="math display">\[
+\mathbb{E}[p \mid \text{data}] = \frac{\alpha&#39;}{\alpha&#39; + \beta&#39;} = \frac{7}{7+5} = 0.583.
+\]</span></p>
+<p>This updated mean reflects our new belief about <span class="math inline">\(p\)</span> after observing the data.</p>
+<hr />
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="solutions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a-caucus-race-and-a-long-tale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bayesian-inference.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="posterior-interval.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -378,7 +415,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/xadex01/Bayesian_Statistics/edit/main/02-tears.Rmd",
+"link": "https://github.com/xadex01/Bayesian_Statistics/edit/main/index.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -386,7 +423,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/xadex01/Bayesian_Statistics/blob/main/02-tears.Rmd",
+"link": "https://github.com/xadex01/Bayesian_Statistics/blob/main/index.Rmd",
 "text": null
 },
 "download": null,

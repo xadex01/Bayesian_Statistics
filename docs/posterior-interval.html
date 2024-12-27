@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity</title>
-  <meta name="description" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <title>Chapter 7 Posterior Interval | Bayesian Analysis of Employee Productivity</title>
+  <meta name="description" content="Chapter 7 Posterior Interval | Bayesian Analysis of Employee Productivity" />
   <meta name="generator" content="bookdown 0.41 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <meta property="og:title" content="Chapter 7 Posterior Interval | Bayesian Analysis of Employee Productivity" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 The pool of tears | Bayesian Analysis of Employee Productivity" />
+  <meta name="twitter:title" content="Chapter 7 Posterior Interval | Bayesian Analysis of Employee Productivity" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="solutions.html"/>
-<link rel="next" href="a-caucus-race-and-a-long-tale.html"/>
+<link rel="prev" href="the-beta-prior-distribution.html"/>
+<link rel="next" href="exercise-description.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -337,17 +337,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="the-pool-of-tears" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">Chapter 10</span> The pool of tears<a href="the-pool-of-tears.html#the-pool-of-tears" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-
+<div id="posterior-interval" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">Chapter 7</span> Posterior Interval<a href="posterior-interval.html#posterior-interval" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In Bayesian statistics, a <strong>posterior interval</strong> (or credible interval) is the Bayesian equivalent of a confidence interval in frequentist statistics. It provides a range within which a parameter value is likely to fall, given the observed data and prior information. Unlike frequentist confidence intervals, posterior intervals directly represent probabilities.</p>
+<div id="definition-1" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Definition<a href="posterior-interval.html#definition-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Given a posterior distribution <span class="math inline">\(P(\theta|D)\)</span>, where <span class="math inline">\(\theta\)</span> is the parameter of interest and <span class="math inline">\(D\)</span> is the observed data, a <strong>credible interval</strong> <span class="math inline">\([a, b]\)</span> satisfies:</p>
+<p><span class="math display">\[
+P(a \leq \theta \leq b | D) = 1 - \alpha,
+\]</span></p>
+<p>where <span class="math inline">\(1 - \alpha\)</span> is the desired level of credibility (e.g., <span class="math inline">\(0.95\)</span> for a <span class="math inline">\(95\%\)</span> credible interval).</p>
+</div>
+<div id="interpretation" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Interpretation<a href="posterior-interval.html#interpretation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>A <span class="math inline">\(95\%\)</span> credible interval means there is a <span class="math inline">\(95\%\)</span> probability that the true parameter value lies within the interval, given the data and the prior.</p>
+</div>
+<div id="worked-example-posterior-interval-for-a-coin-toss" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> Worked Example: Posterior Interval for a Coin Toss<a href="posterior-interval.html#worked-example-posterior-interval-for-a-coin-toss" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="problem-statement-1" class="section level3 hasAnchor" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> Problem Statement<a href="posterior-interval.html#problem-statement-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose we have a coin, and we want to estimate the probability of heads (<span class="math inline">\(\theta\)</span>). The coin is flipped <span class="math inline">\(n = 10\)</span> times, and heads appear <span class="math inline">\(k = 6\)</span> times. We assume a Beta prior distribution:</p>
+<p><span class="math display">\[
+\theta \sim \text{Beta}(\alpha, \beta) \quad \text{with } \alpha = 2, \beta = 2.
+\]</span></p>
+<p>The likelihood of observing <span class="math inline">\(k\)</span> heads in <span class="math inline">\(n\)</span> flips is a Binomial distribution:</p>
+<p><span class="math display">\[
+P(k | \theta) = \binom{n}{k} \theta^k (1 - \theta)^{n-k}.
+\]</span></p>
+<p>The posterior distribution is also a Beta distribution:</p>
+<p><span class="math display">\[
+\theta | D \sim \text{Beta}(\alpha + k, \beta + n - k).
+\]</span></p>
+<p>Substituting values:</p>
+<p><span class="math display">\[
+\theta | D \sim \text{Beta}(2 + 6, 2 + 4) = \text{Beta}(8, 6).
+\]</span></p>
+</div>
+<div id="step-1-compute-the-posterior-interval" class="section level3 hasAnchor" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Step 1: Compute the Posterior Interval<a href="posterior-interval.html#step-1-compute-the-posterior-interval" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We want a <span class="math inline">\(95\%\)</span> posterior interval for <span class="math inline">\(\theta\)</span>. This requires finding <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> such that:</p>
+<p><span class="math display">\[
+P(a \leq \theta \leq b | D) = 0.95.
+\]</span></p>
+<p>For a Beta distribution, credible intervals can be computed using quantiles of the posterior distribution. The <span class="math inline">\(2.5\%\)</span> and <span class="math inline">\(97.5\%\)</span> quantiles of <span class="math inline">\(\text{Beta}(8, 6)\)</span> serve as the endpoints of the interval.</p>
+</div>
+<div id="step-2-quantile-calculation-using-r-or-python" class="section level3 hasAnchor" number="7.3.3">
+<h3><span class="header-section-number">7.3.3</span> Step 2: Quantile Calculation (Using R or Python)<a href="posterior-interval.html#step-2-quantile-calculation-using-r-or-python" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In R, we can compute the quantiles using the <code>qbeta</code> function:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="posterior-interval.html#cb11-1" tabindex="-1"></a><span class="fu">qbeta</span>(<span class="fu">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>), <span class="at">shape1 =</span> <span class="dv">8</span>, <span class="at">shape2 =</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>## [1] 0.3157776 0.8077676</code></pre>
+<p>The result is approximately:</p>
+<p><span class="math display">\[
+[0.345, 0.827].
+\]</span></p>
+</div>
+<div id="conclusion-1" class="section level3 hasAnchor" number="7.3.4">
+<h3><span class="header-section-number">7.3.4</span> Conclusion<a href="posterior-interval.html#conclusion-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <span class="math inline">\(95\%\)</span> credible interval for <span class="math inline">\(\theta\)</span> is <span class="math inline">\([0.345, 0.827]\)</span>. This means there is a <span class="math inline">\(95\%\)</span> probability that the true value of <span class="math inline">\(\theta\)</span> lies within this interval, given the observed data and prior.</p>
+<hr />
+<p>Continue adding sections as needed with similar formatting for examples and equations.</p>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="solutions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="a-caucus-race-and-a-long-tale.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="the-beta-prior-distribution.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="exercise-description.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -378,7 +436,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/xadex01/Bayesian_Statistics/edit/main/02-tears.Rmd",
+"link": "https://github.com/xadex01/Bayesian_Statistics/edit/main/index.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -386,7 +444,7 @@ gitbook.start({
 "text": null
 },
 "view": {
-"link": "https://github.com/xadex01/Bayesian_Statistics/blob/main/02-tears.Rmd",
+"link": "https://github.com/xadex01/Bayesian_Statistics/blob/main/index.Rmd",
 "text": null
 },
 "download": null,
